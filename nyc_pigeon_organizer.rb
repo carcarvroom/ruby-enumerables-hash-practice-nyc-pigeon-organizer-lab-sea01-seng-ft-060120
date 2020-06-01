@@ -4,14 +4,14 @@ def nyc_pigeon_organizer(data)
   data.each do |color_gender_lives, inner_key|
     inner_key.each do |key, array|
        array.each do |name|
-        if new_pigeon_list.has_key?(name)
-          if new_pigeon_list[name].has_key?(color_gender_lives)
-            new_pigeon_list[name][color_gender_lives] << key.to_s 
-          else
-            new_pigeon_list[name][color_gender_lives] = [key.to_s]
-          end
-        else
+        if not new_pigeon_list.has_key?(name)
           new_pigeon_list[name] = {color_gender_lives => [key.to_s]}
+          next
+        end
+        if new_pigeon_list[name].has_key?(color_gender_lives)
+          new_pigeon_list[name][color_gender_lives] << key.to_s 
+        else
+          new_pigeon_list[name][color_gender_lives] = [key.to_s]
         end
       end
     end
